@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 
-const socket = io('https://restaurante-realtime.onrender.com')
+const socket = io('https://restaurante-realtime.onrender.com', {
+    transports: ['websocket', 'polling'],
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+})
 
 const PLATOS = [
     { nombre: 'Hamburguesa', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80' },

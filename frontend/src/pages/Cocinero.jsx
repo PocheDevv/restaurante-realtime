@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
 
-const socket = io('http://localhost:3000')
+const socket = io('https://restaurante-realtime.onrender.com', {
+    transports: ['websocket', 'polling'],
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+})
 
 // Calcula cuánto tiempo pasó desde que se creó el pedido
 const tiempoTranscurrido = (timestamp) => {
